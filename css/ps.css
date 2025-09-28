@@ -1,0 +1,49 @@
+.form-section {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 5%;
+}
+
+select{
+    width: 80%;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 1rem ;
+}
+
+input{
+    width: 70%;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button{
+    padding: 0.7rem 2.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #5e5e5e;
+    color: white;
+    cursor: pointer;
+    margin: 3rem 0;
+}
+
+label{
+  color: #798384;
+}
+
+.inactive {
+  background-color: #5e5e5e;
+}
+
+.active {
+  background-color: #e52a1b;
+}
+
+.input-pc{
+  margin: 0 2rem;
+}

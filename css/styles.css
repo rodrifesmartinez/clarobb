@@ -1,0 +1,351 @@
+@font-face {
+    font-family: 'AMX-Regular';
+    src: url('../fonts/AMX-Regular.woff') format('woff'),
+         url('../fonts/AMX-Regular.ttf') format('truetype'),
+         url('../fonts/Roboto-Regular.woff') format('woff'),
+         url('../fonts/claroicons.woff') format('woff'),
+         url('../fonts/fontawesome-webfont.woff') format('woff'),
+         url('../fonts/Open-Sans-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'AMX-Regular', sans-serif;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#comida {
+    background-color: #DA291C !important;
+    padding: 7px;
+}
+
+.logo {
+    width: 80px;
+}
+
+.caja_img {
+    text-align: center;
+}
+
+#ggris1 {
+    text-align: center;
+    height: 150px;
+    background-color: #F3F3F4;
+    border-bottom: 1px solid #AEAEAE;
+    box-shadow: 0 0 0 rgb(0 0 0 / 16%);
+}
+
+#tabla-opciones {
+    margin: -30px auto 0px auto;
+    width: 94%;
+    max-width: 1000px;
+    border-collapse: collapse;
+}
+
+#tabla-opciones td {
+    border: none;
+}
+
+.etq-pasos {
+    font-size: 13px;
+}
+
+.act-pasos {
+    color: #2c97ad;
+}
+
+section {
+    margin: 0 auto;
+    text-align: center;
+    width: 96%;
+    max-width: 680px;
+}
+
+.texto1 {
+    font-size: 28px;
+    color: #5c5c5c;
+}
+
+.rojo {
+    font-weight: 600;
+    color: #EF3829;
+}
+
+.texto2 {
+    color: #5c5c5c;
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.texto_gris2 {
+    text-align: left;
+}
+
+.etiquetas {
+    color: #2c97ad;
+    font-size: 14px;
+}
+
+.entradas {
+    border: 1px solid #5c5c5c;
+    width: 96%;
+    outline: none;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 440px;
+}
+
+.botonr {
+    background-color: #fff;
+    border: 0;
+    cursor: pointer;
+}
+
+.boton_continuar,
+.boton2 {
+    background-color: #E52A1B;
+    color: #fff;
+    border: 0;
+    outline: 0;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+    width: 96%;
+    max-width: 250px;
+}
+
+footer {
+    background-color: #212121;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+}
+
+.footer2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 10px;
+    margin-top: -50px;
+}
+
+.footer2 .logo2 {
+    display: inline-block;
+}
+
+.app {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.android, .ios {
+    display: inline-block;
+    margin: 10px;
+}
+
+#footerr p {
+    text-align: center;
+    margin-top: -70px;
+}
+
+.celda {
+    background-color: #F4F4F4;
+    padding: 7px 10px;
+    border: 1px solid #AEAEAE;
+    text-align: left;
+}
+
+.celda2 {
+    background-color: #DA291C;
+    color: #fff;
+    text-align: center;
+}
+
+#ca,
+#ba,
+#bo,
+#ne,
+#ps {
+    width: 96%;
+    background-color: #fff;
+    margin: 5px 0px;
+    border-radius: 10px;
+    border: 1px solid #AEAEAE;
+}
+
+.options-list li {
+    list-style-type: none;
+    padding: 5px;
+}
+
+.options-list li:hover {
+    background-color: #808080b0;
+    color: #fff;
+    cursor: pointer;
+}
+
+#selectBox {
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.logo2 {
+    display: block;
+    margin: 0 auto;
+}
+
+#tabla-factura {
+    margin: 20px auto;
+    width: 80%;
+}
+
+#fecha-actual {
+    text-align: center;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #E52A1B;
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+td {
+    padding: 10px;
+    border: 1px solid #ddd; /* Mantener las líneas horizontales y verticales externas */
+    border-left: none; /* Eliminar las líneas verticales internas */
+    border-right: none; /* Eliminar las líneas verticales internas */
+}
+
+/* Mantener bordes verticales externos */
+table td:first-child {
+    border-left: 1px solid #ddd; /* Borde izquierdo externo */
+}
+
+table td:last-child {
+    border-right: 1px solid #ddd; /* Borde derecho externo */
+}
+.centrado {
+    text-align: center;
+    color: #fff;
+    margin-top: 2px;
+    font-size: 20px;
+    white-space: normal;
+    word-wrap: break-word;
+    font-weight: medium;
+}
+
+.select.active, .select:hover {
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, .16);
+    border: 2px solid #EE6745;
+}
+
+.select {
+    background: #fff;
+    width: 80%; /* Aumentamos el ancho */
+    box-shadow: 0px 0px 0px rgb(0 0 0 / 16%);
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: .2s ease all;
+    margin: 10px auto 30px auto; /* Incrementar el margen superior para moverlo hacia abajo */
+    padding: 5px; /* Un poco más de espacio interno */
+    position: relative;
+    z-index: 200;
+    border: 2px solid #cacaca;
+    min-height: 40px; /* Reducimos la altura mínima */
+}
+
+.titulo1 {
+    display: inline-block;   
+    padding-left: 90px;  /* Ajusta este valor para moverlo más a la derecha */
+}
+
+.titulo {
+    display: inline-block;   
+    padding-left: 50px;  /* Ajusta este valor para moverlo más a la derecha */
+}
+/* Estilos para el selector */
+.select {
+    position: relative;
+    width: 300px; /* Ajusta el ancho según sea necesario */
+    cursor: pointer;
+}
+
+.contenido-select {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.opciones {
+    display: none; /* Oculta las opciones por defecto */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+.opcion {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.opcion:last-child {
+    border-bottom: none;
+}
+
+.opcion:hover {
+    background-color: #f0f0f0;
+}
+
+/* Clase para mostrar las opciones */
+.select.active .opciones {
+    display: block;
+}
+#tabla-factura {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #f5f4f4;
+}
+
+#tabla-factura th, #tabla-factura td {
+    padding: 10px;
+    text-align: left;
+}
+
+#tabla-factura th.centrado {
+    text-align: center;
+}
+
+#tabla-factura td {
+    color: #000;
+}
+
+#tabla-factura td#numero-celular, 
+#tabla-factura td:nth-child(2):nth-of-type(3), 
+#tabla-factura td:nth-child(2):nth-of-type(5), 
+#tabla-factura td:nth-child(2):nth-of-type(6), 
+#tabla-factura td:nth-child(2):nth-of-type(7) {
+    color: #8b8b8b;
+}

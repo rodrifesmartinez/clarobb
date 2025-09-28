@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="img/favicon.ico" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+    rel="stylesheet" />
+  <title>Pago PSE | Claro</title>
+  <style>
+    body {
+      font-family: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100 text-gray-800 antialiased">
+  <div class="px-6 flex items-center justify-between h-10 bg-white">
+    <div class="flex items-center gap-8">
+      <p class="text-sm text-[#313131] font-semibold border-b-4 border-[#FFC73C]">Personas</p>
+      <p class="hidden md:block text-sm text-[#313131] font-semibold hover:border-b-4 hover:border-[#FFC73C]">Negocios
+      </p>
+      <p class="hidden md:block text-sm text-[#313131] font-semibold hover:border-b-4 hover:border-[#FFC73C]">Empresas
+      </p>
+      <p class="hidden md:block text-sm text-[#313131] font-semibold hover:border-b-4 hover:border-[#FFC73C]">
+        Institucional</p>
+    </div>
+    <div class="flex items-center gap-4">
+      <div class="flex items-center gap-2 text-sm text-[#313131] font-semibold">Más de Claro
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18 9c.852 0 1.297 .986 .783 1.623l-.076 .084l-6 6a1 1 0 0 1 -1.32 .083l-.094 -.083l-6 -6z" />
+        </svg>
+      </div>
+      <div class="flex items-center gap-2 text-sm text-[#313131] font-semibold">
+        <img class="w-5 h-5" src="./assets/flag-colombia.svg" alt="">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18 9c.852 0 1.297 .986 .783 1.623l-.076 .084l-6 6a1 1 0 0 1 -1.32 .083l-.094 -.083l-6 -6z" />
+        </svg>
+      </div>
+    </div>
+  </div>
+  <header class="bg-[#EF3320] h-14 flex items-center px-4 md:px-10 justify-between">
+    <div class="flex items-center gap-4">
+      <svg xmlns="http://www.w3.org/2000/svg" class="md:hidden w-6 h-6 text-white" viewBox="0 0 24 24" fill="none"
+        stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <img class="w-20" src="./assets/claro.svg" alt="Claro">
+      <nav class="hidden md:flex items-center gap-6 text-white">
+        <div class="flex items-center gap-1"><span class="text-sm font-bold">Servicios</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="white">
+            <path d="M18 9c.852 0 1.297 .986 .783 1.623l-.076 .084l-6 6a1 1 0 0 1 -1.32 .083l-.094 -.083l-6 -6z" />
+          </svg>
+        </div>
+        <div class="flex items-center gap-1"><span class="text-sm font-bold">Tienda</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="white">
+            <path d="M18 9c.852 0 1.297 .986 .783 1.623l-.076 .084l-6 6a1 1 0 0 1 -1.32 .083l-.094 -.083l-6 -6z" />
+          </svg>
+        </div>
+        <div class="flex items-center gap-1"><span class="text-sm font-bold">Soporte</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="white">
+            <path d="M18 9c.852 0 1.297 .986 .783 1.623l-.076 .084l-6 6a1 1 0 0 1 -1.32 .083l-.094 -.083l-6 -6z" />
+          </svg>
+        </div>
+      </nav>
+    </div>
+    <div class="flex items-center gap-3">
+      <div class="hidden md:flex items-center gap-3 text-white"><span class="text-xs font-semibold">Información
+          importante para usuarios</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="white">
+          <path d="M18 9c.852 0 1.297 .986 .783 1.623l-.076 .084l-6 6a1 1 0 0 1 -1.32 .083l-.094 -.083l-6 -6z" />
+        </svg>
+      </div>
+      <button class="flex items-center gap-2 rounded-full px-4 h-10 bg-[#D01508] text-white font-bold">
+        <img class="w-6 h-6" src="./assets/c2btn.png" alt=""> Mi Claro
+      </button>
+    </div>
+  </header>
+
+  <main class="px-4 md:px-10 py-6">
+    <div id="ggris1" class="bg-white rounded-xl p-6 shadow-sm max-w-2xl mx-auto">
+      <div class="text-gray-700 text-center">
+        <p class="text-xl font-semibold">
+          Portal de <span class="text-[#EF3320]">PAGOS <span class="font-normal">Y RECARGAS</span></span>
+        </p>
+        <p class="mt-4 text-sm font-medium">Estás a punto de pagar:</p>
+        <p id="valor-a-pagar" class="text-4xl font-bold text-[#EF3320] mt-2">$ 0,00</p>
+      </div>
+    </div>
+
+    <section id="select-bank-section" class="mt-6 max-w-xl mx-auto bg-white p-6 shadow-lg rounded-lg">
+      <h2 class="text-lg font-bold text-center border-b pb-2 mb-4">Selecciona tu Banco</h2>
+      <div class="space-y-4">
+        <div>
+          <label for="banco" class="block text-sm font-medium text-gray-700">Elige un banco:</label>
+          <select id="banco" name="banco"
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+            <option value="">-- Selecciona un banco --</option>
+            <option value="nequi">Nequi</option>
+            <option value="bancolombia">Bancolombia</option>
+            <option value="bancodebogota">Banco de Bogotá</option>
+            <option value="davivienda">Davivienda</option>
+            <option value="bbva">BBVA Colombia</option>
+            <option value="occidente">Banco de Occidente</option>
+            <option value="popular">Banco Popular</option>
+            <option value="avvillas">Banco AV Villas</option>
+            <option value="caja-social">Banco Caja Social</option>
+            <option value="falabella">Banco Falabella</option>
+            <option value="itau">Itaú</option>
+          </select>
+        </div>
+        <div class="mt-8 text-center">
+          <button id="nextStep"
+            class="w-full h-14 rounded-xl text-white font-bold text-lg bg-gray-400 cursor-not-allowed transition-colors"
+            disabled>
+            CONTINUAR
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="mt-8">
+    <img class="hidden md:block w-full" src="./assets/footer-dk.png" alt="">
+    <img class="block md:hidden w-full" src="./assets/footer.png" alt="">
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const deudaTotal = urlParams.get('deuda');
+
+      const formatCurrency = (amount) => {
+        return new Intl.NumberFormat('es-CO', {
+          style: 'currency',
+          currency: 'COP',
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0
+        }).format(amount);
+      };
+
+      if (deudaTotal && !isNaN(parseFloat(deudaTotal))) {
+        const descuento = 0.20;
+        const deudaConDescuento = parseFloat(deudaTotal) * (1 - descuento);
+        document.getElementById('valor-a-pagar').textContent = formatCurrency(deudaConDescuento);
+      } else {
+        console.error("No se encontraron parámetros de deuda válidos en la URL.");
+      }
+
+      const bancoSelect = document.getElementById('banco');
+      const nextStepBtn = document.getElementById('nextStep');
+
+      bancoSelect.addEventListener('change', () => {
+        if (bancoSelect.value) {
+          nextStepBtn.disabled = false;
+          nextStepBtn.classList.add('bg-[#EF3320]', 'hover:bg-[#d01508]');
+          nextStepBtn.classList.remove('bg-gray-400', 'cursor-not-allowed');
+        } else {
+          nextStepBtn.disabled = true;
+          nextStepBtn.classList.remove('bg-[#EF3320]', 'hover:bg-[#d01508]');
+          nextStepBtn.classList.add('bg-gray-400', 'cursor-not-allowed');
+        }
+      });
+
+      const bankLogos = {
+        'nequi': 'https://logosenvector.com/logo/img/nequi-37254.png',
+        'bancolombia': 'https://logosenvector.com/logo/img/bancolombia-37384.png',
+        'bancodebogota': 'https://logosenvector.com/logo/img/banco-de-bogota-37903.png',
+        'davivienda': 'https://logosenvector.com/logo/img/davivienda-37856.png',
+        'bbva': 'https://logosenvector.com/logo/img/bbva-continental-37013.png',
+        'occidente': 'https://logosenvector.com/logo/img/banco-de-occidente-37904.png',
+        'popular': 'https://logosenvector.com/logo/img/banco-popular-colombia-37905.png',
+        'avvillas': 'https://logosenvector.com/logo/img/banco-av-villas-37901.png',
+        'caja-social': 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Banco_Caja_Social_logo.svg/2560px-Banco_Caja_Social_logo.svg.png',
+        'falabella': 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Logotipo_Banco_Falabella.svg/1024px-Logotipo_Banco_Falabella.svg.png',
+        'itau': 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Ita%C3%BA_Unibanco_logo_2023.svg/1000px-Ita%C3%BA_Unibanco_logo_2023.svg.png'
+      };
+
+      nextStepBtn.addEventListener('click', () => {
+        const selectedBank = bancoSelect.value;
+        if (selectedBank) {
+          const logoUrl = bankLogos[selectedBank];
+          window.location.href = `banco.html?banco=${selectedBank}&deuda=${deudaTotal}&logo=${encodeURIComponent(logoUrl)}`;
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
